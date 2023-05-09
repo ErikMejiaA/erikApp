@@ -23,7 +23,7 @@ document.querySelectorAll(".menu").forEach((seccion) => {
     });
 });
 
-//funcion para actvar y desaptivar los botones del formulario
+//funcion para activar y desaptivar los botones del formulario
 document.querySelectorAll(".botonn").forEach((boton) => {
     boton.addEventListener('click', (e) => {
         let botondatos = JSON.parse(e.target.dataset.habilitardesabilitar);

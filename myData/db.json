@@ -84,6 +84,57 @@
       "id": 4
     }
   ],
-  "moduloSkill": [],
-  "evaluacion": []
+  "moduloSkill": [
+    {
+      "nombre": "PLUTON",
+      "id_skill": "1",
+      "id": 1
+    },
+    {
+      "nombre": "MARTE",
+      "id_skill": "1",
+      "id": 2
+    },
+    {
+      "nombre": "SATURNO",
+      "id_skill": "2",
+      "id": 3
+    },
+    {
+      "nombre": "NECTUNO",
+      "id_skill": "3",
+      "id": 4
+    },
+    {
+      "nombre": "MERCURIO",
+      "id_skill": "4",
+      "id": 5
+    }
+  ],
+  "evaluacion": [
+    {
+      "id_recluta": "1",
+      "id_modulo": "2",
+      "nota": "5.0",
+      "id": 1
+    },
+    {
+      "id_recluta": "1",
+      "id_modulo": "3",
+      "nota": "5.0",
+      "id": 2
+    },
+    {
+      "id_recluta": "3",
+      "id_modulo": "1",
+      "nota": "3.0",
+      "id": 3
+    },
+    {
+      "id_recluta": "3",
+      "id_modulo": "3",
+      "nota": "3.0",
+      "id": 4
+    }
+  ]
 }
