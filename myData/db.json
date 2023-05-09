@@ -1,0 +1,89 @@
+{
+  "team": [
+    {
+      "nombre": "VENUS",
+      "trainerAsociado": "JOSE",
+      "id": 1
+    },
+    {
+      "nombre": "ANDROMEDA",
+      "trainerAsociado": "TOMAS",
+      "id": 2
+    },
+    {
+      "nombre": "SOLLUNA",
+      "trainerAsociado": "LUCAS",
+      "id": 3
+    }
+  ],
+  "reclutas": [
+    {
+      "nombre": "lucas",
+      "edad": "17",
+      "telefono": "52415",
+      "email": "lucas@gmail.com",
+      "direccion": "calle 12#52-10",
+      "fechaNacimiento": "2023-05-02",
+      "numIdentificacion": "10214584",
+      "fechaIngresoPrograma": "2023-05-01",
+      "id_team": "1",
+      "id": 1
+    },
+    {
+      "nombre": "tomas",
+      "edad": "25",
+      "telefono": "251584",
+      "email": "tomas@gmail.com",
+      "direccion": "carrera 25 #62-1",
+      "fechaNacimiento": "2023-04-30",
+      "numIdentificacion": "221458",
+      "fechaIngresoPrograma": "2023-05-03",
+      "id_team": "1",
+      "id": 2
+    },
+    {
+      "nombre": "oscar",
+      "edad": "12",
+      "telefono": "52458",
+      "email": "oscar@gmail.com",
+      "direccion": "carrera 25 #62-12",
+      "fechaNacimiento": "2023-05-01",
+      "numIdentificacion": "215457",
+      "fechaIngresoPrograma": "2023-05-03",
+      "id_team": "1",
+      "id": 3
+    },
+    {
+      "nombre": "tomas pedro",
+      "edad": "28",
+      "telefono": "544877",
+      "email": "pedro@gmail.com",
+      "direccion": "calle 12#52-1025",
+      "fechaNacimiento": "2023-05-07",
+      "numIdentificacion": "25487",
+      "fechaIngresoPrograma": "2023-05-03",
+      "id_team": "2",
+      "id": 4
+    }
+  ],
+  "skill": [
+    {
+      "nombre": "San Lucas Tadeo",
+      "id": 1
+    },
+    {
+      "nombre": "Federico Leon",
+      "id": 2
+    },
+    {
+      "nombre": "tomas de Alicante",
+      "id": 3
+    },
+    {
+      "nombre": "Laura Sofia ",
+      "id": 4
+    }
+  ],
+  "moduloSkill": [],
+  "evaluacion": []
+}

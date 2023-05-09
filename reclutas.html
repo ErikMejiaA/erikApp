@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.6.4.slim.js" defer></script>
+    <script src="js/bootstrap/bootstrap.min.js" defer></script>
+    <script src="app/app.js" type="module" defer></script>
+    <script src="services/services-reclutas.js" defer></script>
+
+    <title>INFORMACIÓN RECLUTAS</title>
+
+</head>
+
+<body>
+    <header>
+        <!--barra de menu-->
+        <nav-bar-menu></nav-bar-menu>
+    </header>
+
+    <nav></nav>
+
+    <main>
+        <!--seccion para navegar dentro de la pagina-->
+        <div class="container mt-2">
+            <div class="container mt-2">
+                <h1>Gestionar Informacion de los Reclutas</h1>
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link menu" aria-current="page" href="#"
+                                data-veryocultar='["#registro", ["#listar", "#buscar"]]'>Registro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu" href="#"
+                                data-veryocultar='["#listar", ["#registro", "#buscar"]]'>Listar Reclutas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu" href="#"
+                                data-veryocultar='["#buscar", ["#listar", "#registro"]]'>Buscar Recluta</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--dentro de este div esta toda la info de cada una de las secciones presentes anteriormente-->
+        <div class="container">
+
+            <!--seccion de registro del los reclutas-->
+            <div class="container mt-3" id="registro">
+                <!--Forumulario-->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Registrar Recluta</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <form id="fromDatosRecluta">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">Dijite su nombre:</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="edad" class="form-label">Dijite su edad:</label>
+                                            <input type="number" class="form-control" id="edad" name="edad" min="0" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="telefono" class="form-label">Dijite su numero
+                                                telefononico:</label>
+                                            <input type="number" class="form-control" id="telefono" name="telefono"
+                                                min="0" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Dijite su Email:</label>
+                                            <input type="email" class="form-control" id="email" name="email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="direccion" class="form-label">Dijite su Dirección:</label>
+                                            <input type="text" class="form-control" id="direccion" name="direccion" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="fechaNacimiento" class="form-label">Dijite su Fecha de
+                                                Nacimiento:</label>
+                                            <input type="date" class="form-control" id="fechaNacimiento"
+                                                name="fechaNacimiento" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="numIdentificacion" class="form-label">Dijite su Numero de
+                                                Identificación:</label>
+                                            <input type="number" class="form-control" id="numIdentificacion"
+                                                name="numIdentificacion" min="0" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="fechaIngresoPrograma" class="form-label">Fecha de Ingreso al
+                                                Programa:</label>
+                                            <input type="date" class="form-control" id="fechaIngresoPrograma"
+                                                name="fechaIngresoPrograma" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="id_team" class="form-label">Seleccione el Id de su TEAM:</label>
+                                            <!--<input type="number" class="form-control" id="id_team" name="id_team" min="0"/>-->
+                                            <select class="form-select" id="id_team" name="id_team">
+                                                <option selected>Id TEAM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container text-center">
+
+                                <button type="submit" class="btn btn-primary botonn" id="nuevoRecluta"
+                                    data-habilitardesabilitar='[["#guardarRecluta"], ["#nuevoRecluta"]]'>NUEVO
+                                    RECLUTA</button>
+
+                                <!--<button disabled type="submit" class="btn btn-danger" id="cancelarRegistro" data-habilitardesabilitar='[["#nuevoCliente"], ["#cancelarRegistro", "#editarCliente", "#eliminarCliente", "#guardarCliente"]]'>CANCELAR REGISTRO</button>-->
+
+                                <button disabled type="submit" class="btn btn-success botonn" id="guardarRecluta"
+                                    data-habilitardesabilitar='[["#nuevoRecluta"], ["#guardarRecluta"]]'>GUARDAR
+                                    RECLUTA</button>
+
+                                <!--<button disabled type="submit" class="btn btn-warning" id="editarCliente" data-habilitardesabilitar='[["#nuevoCliente", "#eliminarCliente", "#editarCliente"], ["#cancelarRegistro", "#guardarCliente"]]'>EDITAR CLIENTE</button>-->
+
+                                <!--<button disabled type="submit" class="btn btn-danger" id="eliminarCliente" data-habilitardesabilitar='[["#nuevoCliente"], ["#cancelarRegistro", "#editarCliente", "#eliminarCliente", "#guardarCliente"]]'>ELIMINAR CLIENTE</button>-->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--seccion para ver los reclutas registrados-->
+            <div class="container" id="listar">
+                <h2>Ver Lista de los Reclutas</h2>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Id Team</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Fecha Nacimiento</th>
+                            <th scope="col">Identificacion</th>
+                            <th scope="col">Fecha Ingreso</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla">
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--seccion para buscar el recluta-->
+            <div class="container mt-3" id="buscar">
+                <h2>Seleccione lo que desea buscar</h2>
+                <div class="container">
+                    <div class="d-flex align-items-start">
+                        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                            aria-orientation="vertical">
+                            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                                aria-selected="true">Recluta Team Espesifico</button>
+                            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-profile" type="button" role="tab"
+                                aria-controls="v-pills-profile" aria-selected="false">Reclutas Menores:</button>
+                            <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-messages" type="button" role="tab"
+                                aria-controls="v-pills-messages" aria-selected="false">Reclutas Aprobaron
+                                Modulo:</button>
+                            <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-settings" type="button" role="tab"
+                                aria-controls="v-pills-settings" aria-selected="false">Reclutas 2 meses
+                                programa:</button>
+                        </div>
+
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+
+                                <div class="container">
+                                    <label for="id_team1" class="form-label">Seleccione el Id de TEAM para saber que reclutas lo conforman:</label>
+                                    <select class="form-select" id="id_team1" name="id_team1">
+                                        <option selected>Id TEAM</option>
+                                    </select>
+                                </div>
+
+                                <div class="container mt-3 desabilitar">
+                                    <table class="table table-success table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Id Team</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Edad</th>
+                                                <th scope="col">Telefono</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Dirección</th>
+                                                <th scope="col">Fecha Nacimiento</th>
+                                                <th scope="col">Identificacion</th>
+                                                <th scope="col">Fecha Ingreso</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bodyTabla">
+                    
+                    
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+                                
+                                <div class="container mt-3">
+                                    <p class="text-center">Acontinucacion se muestra los reclutas que son menores de edad pertenecientes a cualquier TEAM:</p>
+                                    <div class="container">
+                                        <table class="table table-success table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Id Team</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Edad</th>
+                                                    <th scope="col">Telefono</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Dirección</th>
+                                                    <th scope="col">Fecha Nacimiento</th>
+                                                    <th scope="col">Identificacion</th>
+                                                    <th scope="col">Fecha Ingreso</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bodyTablaMenores">
+                        
+                        
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+
+                                <div class="container">
+                                    <p class="text-center">Acontinucacion se muestra los reclutas que aprobaron un modulo:</p>
+                                </div>
+                            
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">
+
+                                <div class="container">
+                                    <p class="text-center">Acontinucacion se muestra los reclutas que llevan mas de 2 meses en el programa:</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+
+
+
+
+</body>
+
+</html>
