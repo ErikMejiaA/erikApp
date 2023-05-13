@@ -1,2 +1,2 @@
 # erikApp
-proyecto prueba campus Erik 
+proyecto prueba campus Erik, iplementacion de json-server
