@@ -1,12 +1,14 @@
 //iniciamos variables globales
 const URL_API = 'http://localhost:3000/'; //url del servidor json server
 const frmDatosRecluta = document.querySelector('#fromDatosRecluta');
+const frmDatosReclutasEditar = document.querySelector('#fromDatosRecluta1');
+let idEditar = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     //aqui van las funciones que van a iniciar cuando se cargue el DOM
 
-    getTeam();
     getReclutas();
+    getTeam();
 
 });
 
@@ -49,7 +51,8 @@ async function getTeam() {
 
         if (response.status === 200) {
             const data = await response.json();
-            cargarIdTeam(data);
+            cargarIdTeam1(data);
+            //console.log(data)
 
         } else if (response.status === 401) {
             console.log("la lleve a la cual deseas ingresar esta mal escrita")
@@ -66,17 +69,16 @@ async function getTeam() {
     }
 }
 
-function cargarIdTeam(datosTeam) {
-    const selectGenero = document.querySelector('#id_team');
-
-    datosTeam.forEach(itemTeam => {
-        //console.log(itemTeam.id)
-        const item = document.createElement('option');
-        item.value = itemTeam.id;
-        item.innerHTML = itemTeam.id;
-        selectGenero.appendChild(item);
+function cargarIdTeam1(datosTeam) {
+    document.querySelectorAll('#id_team').forEach((itemSelectGenero) => {
+        console.log(datosTeam);
+        datosTeam.forEach(itemTeam => {
+            const item = document.createElement('option');
+            item.value = itemTeam.id;
+            item.innerHTML = itemTeam.id;
+            itemSelectGenero.appendChild(item);
+        });
     });
-
 }
 //---------------------------------------------------------------------------------------------
 
@@ -91,12 +93,61 @@ const postReclutas = (datos) => {
             method : "POST",
             headers : myHeaders,
             body : JSON.stringify(datos)
-
         }
     ) .then(res => {
         return res.json();
     }) .then(res => {
+        console.log(res);
+    }) .catch(error => {
+        console.log(error);
+    })
+}
 
+//creacion del metodo (GET) para buscar un regitro en la API
+const searchRecluta = (id) => {
+    fetch(`${URL_API}reclutas/${id}`,
+        {
+            method : "GET",
+            headers : myHeaders,
+            //body : JSON.stringify(datos)
+        }
+    ) .then(res => {
+        return res.json();
+    }) .then(res => {
+        console.log(res);
+        llenarNuevoFrmReclutas(res);
+        idEditar = res.id;
+    }) .catch(error => {
+        console.log(error);
+    })
+}
+//creacion del metodo (PUT) para editar un regitro en la API
+const putRecluta = (datos, id) => {
+    fetch(`${URL_API}reclutas/${id}`,
+        {
+            method : "PUT",
+            headers : myHeaders,
+            body : JSON.stringify(datos)
+        }
+    ) .then(res => {
+        return res.json();
+    }) .then(res => {
+        console.log(res);
+    }) .catch(error => {
+        console.log(error);
+    })
+}
+//creacion del metodo (DELETE) para eliminar un regitro en la API
+const deleteRecluta = (datos, id) => {
+    fetch(`${URL_API}reclutas/${id}`,
+        {
+            method : "DELETE",
+            headers : myHeaders,
+            body : JSON.stringify(datos)
+        }
+    ) .then(res => {
+        return res.json();
+    }) .then(res => {
         console.log(res);
     }) .catch(error => {
         console.log(error);
@@ -114,6 +165,7 @@ async function getReclutas() {
             verListarDatosReclutas(data);
             seleccionarTeamReclutas(data);
             verEdadReclutas(data);
+            eliminarDatoRecluta(data);
 
         } else if (response.status === 401) {
             console.log("la lleve a la cual deseas ingresar esta mal escrita")
@@ -150,13 +202,12 @@ document.querySelector('#nuevoRecluta').addEventListener('click', (e) => {
         } else {
             itemFrm.value = '';
         }
-        
     }
     e.preventDefault();
 });
 //---------------------------------------------------------------------------------------------
 
-//------------------funcion para mostrar los Reclutas Registrados---------------------------------
+//------------------funcion para mostrar los Reclutas Registrados------------------------------
 function verListarDatosReclutas(datosRecluta) {
 
     const cuerpoTabla = document.querySelector('#cuerpoTabla');
@@ -174,39 +225,27 @@ function verListarDatosReclutas(datosRecluta) {
             <td>${itemRecluta.numIdentificacion}</td>
             <td>${itemRecluta.fechaIngresoPrograma}</td>
             <td>
-                <button type="button" class="btn btn-warning">Editar</button>
-                <button type="button" class="btn btn-info">Eliminar</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning editar" data-bs-toggle="modal" data-bs-target="#formularioReclutas1" id="${itemRecluta.id}">Editar</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info eliminar" id="${itemRecluta.id}">Eliminar</button>
             </td>
         `;
         cuerpoTabla.appendChild(crearFilas);
     }));
+    buscarDatoRecluta();
 }
-//--------------------------------------------------------------------------------------------
-
-//---------------funcion para buscar que reclutas pertenecen a cada TEAM---------------------
-//llenamos el select con la info de los TEAM registrados
-function cargarIdTeam(datosTeam) {
-    const selectGenero = document.querySelector('#id_team1');
-
-    datosTeam.forEach(itemTeam => {
-        //console.log(itemTeam.id)
-        const item = document.createElement('option');
-        item.value = itemTeam.id;
-        item.innerHTML = itemTeam.id;
-        selectGenero.appendChild(item);
-    });
-}
+//-----------------buscar reclutas segun al team que pertenecen--------------------------------------
 
 function seleccionarTeamReclutas(datosRecluta) {
-
     const cuerpoTabla = document.querySelector('#bodyTabla');
-    
-    document.querySelector('#id_team1').addEventListener('change', (e) => {
+    document.querySelector(".idTeam").addEventListener('change', (e) => {
         document.querySelector(".desabilitar").style.display = "block";
 
         let grupoRecluta = '';
         grupoRecluta = datosRecluta.filter((itemRecluta) => itemRecluta.id_team == e.target.value);
-        console.log(e.target.value)
+        //console.log(e.target.value)
         let reclutasHTML = '';
         grupoRecluta.forEach((itemRecluta => {
             
@@ -233,15 +272,12 @@ function seleccionarTeamReclutas(datosRecluta) {
 
 //---------------------buscar reclutas menores-----------------------------------------------
 function verEdadReclutas(datosRecluta) {
-
     const cuerpoTabla = document.querySelector('#bodyTablaMenores');
-    
     let grupoRecluta = '';
-    grupoRecluta = datosRecluta.filter((itemRecluta) => itemRecluta.edad <= 18);
-    console.log(grupoRecluta);
+    grupoRecluta = datosRecluta.filter((itemRecluta) => itemRecluta.edad < 18);
+    //console.log(grupoRecluta);
     let reclutasHTML = '';
     grupoRecluta.forEach((itemRecluta => {
-
         reclutasHTML += /* html */ `
             <tr>
                 <td>${itemRecluta.id}</td>
@@ -260,3 +296,56 @@ function verEdadReclutas(datosRecluta) {
     cuerpoTabla.innerHTML = reclutasHTML;
 }
 //--------------------------------------------------------------------------------------------
+
+//-------------funcion para buscar el registro a editar de la base de datos----------------------
+function buscarDatoRecluta() {
+    document.querySelectorAll(".editar").forEach((datoRecluta) => {
+        datoRecluta.addEventListener('click', (e) => {
+            searchRecluta(e.target.id);
+
+            e.preventDefault();
+        });
+    });
+}
+//llenamos el formulario del modal para ver los datos que se van a editar 
+function llenarNuevoFrmReclutas(datosEditar) {
+    //desestructuramos los datos a ingresar al formulario 
+    const {nombre, edad, telefono, email, direccion, fechaNacimiento, numIdentificacion, fechaIngresoPrograma, id_team} = datosEditar;
+    const frm = new FormData(frmDatosReclutasEditar);
+    frm.set("nombre", nombre);
+    frm.set("edad", edad);
+    frm.set("telefono", telefono);
+    frm.set("email", email);
+    frm.set("direccion", direccion);
+    frm.set("fechaNacimiento", fechaNacimiento);
+    frm.set("numIdentificacion", numIdentificacion);
+    frm.set("fechaIngresoPrograma", fechaIngresoPrograma);
+    frm.set("id_team", id_team);
+
+    //un ciclo for para rrecorre el frm, se itera a travès de los padres clave-valor de los datos
+    for (let dato of frm.entries()) {
+        //establece los valores correspondientes en el formulario para su llenado
+        frmDatosReclutasEditar.elements[dato[0]].value = dato[1];
+    }
+}
+//guardamos la informacion editada en la base de datos para este caso la API
+document.querySelector(".botonn1").addEventListener('click', (e) => {
+    const datoEditado = Object.fromEntries(new FormData(frmDatosReclutasEditar).entries());//objeto de datos del formulario editado 
+    putRecluta(datoEditado, idEditar);
+
+    e.preventDefault();
+});
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//--------------funcion para elimianr un registro de la base de datos--------------------------
+function eliminarDatoRecluta(datoEliminar) {
+    document.querySelectorAll(".eliminar").forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            let eliminarDato = datoEliminar.find((itemEliminar) => itemEliminar.id == e.target.id);
+            deleteRecluta(eliminarDato, eliminarDato.id)
+    
+            e.preventDefault();
+        });
+    });
+}
+

@@ -14,19 +14,24 @@
       "nombre": "SOLLUNA",
       "trainerAsociado": "LUCAS",
       "id": 3
+    },
+    {
+      "nombre": "JUPITER",
+      "trainerAsociado": "SAN MARCOS TADEO",
+      "id": 4
     }
   ],
   "reclutas": [
     {
-      "nombre": "lucas",
-      "edad": "17",
-      "telefono": "52415",
-      "email": "lucas@gmail.com",
-      "direccion": "calle 12#52-10",
-      "fechaNacimiento": "2023-05-02",
-      "numIdentificacion": "10214584",
-      "fechaIngresoPrograma": "2023-05-01",
-      "id_team": "1",
+      "nombre": "tomas Pedro",
+      "edad": "18",
+      "telefono": "2514",
+      "email": "tomasPedro@gmail.com",
+      "direccion": "calle 25 #21-1",
+      "fechaNacimiento": "2023-04-30",
+      "numIdentificacion": "225258458",
+      "fechaIngresoPrograma": "2023-04-03",
+      "id_team": "2",
       "id": 1
     },
     {
@@ -54,16 +59,28 @@
       "id": 3
     },
     {
-      "nombre": "tomas pedro",
-      "edad": "28",
-      "telefono": "544877",
-      "email": "pedro@gmail.com",
-      "direccion": "calle 12#52-1025",
-      "fechaNacimiento": "2023-05-07",
-      "numIdentificacion": "25487",
-      "fechaIngresoPrograma": "2023-05-03",
-      "id_team": "2",
-      "id": 4
+      "nombre": "Camila",
+      "edad": "24",
+      "telefono": "2343445",
+      "email": "camila@gmail.com",
+      "direccion": "carrera 24 #43-12",
+      "fechaNacimiento": "2023-05-02",
+      "numIdentificacion": "33333",
+      "fechaIngresoPrograma": "2023-05-04",
+      "id_team": "1",
+      "id": 5
+    },
+    {
+      "nombre": "San Marcos",
+      "edad": "17",
+      "telefono": "23456",
+      "email": "sanpedro@gmail.com",
+      "direccion": "carrera 24 #43-45",
+      "fechaNacimiento": "2022-12-06",
+      "numIdentificacion": "344556",
+      "fechaIngresoPrograma": "2023-04-06",
+      "id_team": "3",
+      "id": 6
     }
   ],
   "skill": [
@@ -104,20 +121,9 @@
       "nombre": "NECTUNO",
       "id_skill": "3",
       "id": 4
-    },
-    {
-      "nombre": "MERCURIO",
-      "id_skill": "4",
-      "id": 5
     }
   ],
   "evaluacion": [
-    {
-      "id_recluta": "1",
-      "id_modulo": "2",
-      "nota": "5.0",
-      "id": 1
-    },
     {
       "id_recluta": "1",
       "id_modulo": "3",
@@ -131,9 +137,9 @@
       "id": 3
     },
     {
-      "id_recluta": "3",
-      "id_modulo": "3",
-      "nota": "3.0",
+      "id_recluta": "5",
+      "id_modulo": "2",
+      "nota": "5.0",
       "id": 4
     }
   ]
